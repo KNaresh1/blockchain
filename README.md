@@ -1,12 +1,12 @@
 # blockchain
-Projects, samples and examples for Blockchain
 
-DAPP University:
-----------------
-https://dappuniversity.teachable.com/
+## Description
+This repo contains examples and actual projects related to Blockchain technology.
 
-http://www.dappuniversity.com/
+## Dependencies
 
-Dependencies:
--------------
 NodeJs, Python, React JS, Ganache, Truffle, Infura, Git, Visual Studio C++ 2015
+
+# References
+1. https://dappuniversity.teachable.com/
+2. http://www.dappuniversity.com/
