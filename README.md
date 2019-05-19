@@ -9,11 +9,4 @@ http://www.dappuniversity.com/
 
 Dependencies:
 -------------
-NodeJs
-Python
-React JS
-Ganache
-Truffle
-Infura
-Git
-Visual Studio C++ 2015
+NodeJs, Python, React JS, Ganache, Truffle, Infura, Git, Visual Studio C++ 2015
