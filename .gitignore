@@ -3,3 +3,6 @@
 .project
 .settings/
 bin
+
+#npm
+node_modules
