@@ -1,8 +1,11 @@
-#Eclipse
+# Eclipse
 .classpath
 .project
 .settings/
 bin
 
-#npm
+# npm
 node_modules/
+
+# Truffle
+build/

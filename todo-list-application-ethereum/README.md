@@ -4,7 +4,7 @@
 This repo contains Todo list project implementation with Ethereum blockchain technology.
 
 ## Dependencies
-NodeJs 9.10.0, Python 2.7.16, React JS, Ganache, Truffle 5.0.5, Infura
+NodeJs 9.10.0, Python 2.7.16, React JS, Ganache, Truffle 5.0.5, Infura and Mocha (testing framework) and Chai Assertion library
 
 ### Steps:
 1. Create TodoList.sol and implement smart contract.
