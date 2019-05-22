@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
 contract Election {
-
+	
 	// Model a Candidate
 	struct Candidate {
 		uint id;
