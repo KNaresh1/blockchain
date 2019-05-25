@@ -14,7 +14,9 @@ node> web3.eth.accounts
 
 #### To fetch balance for given account
 node> web3.eth.getBalance(accountAddress, (err, bal) => {balance = bal})
+
 node> web3.utils.fromWei(balance, 'ether')
+
 node> web3.utils.fromWei(balance, 'Gewi')
 
 #### Read contracts from ethereum blockchain
