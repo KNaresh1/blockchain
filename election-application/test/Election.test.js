@@ -30,4 +30,20 @@ contract('Election', (accounts) => {
 		assert.equal(candidate2[2], 0, 'contains the correct votes count')
 	})
 
+	it('allow voters to vote for candidate', async() => {
+		const candidateId = 1
+		await this.election.vote(candidateId, {from: accounts[0]})
+		assert(this.election.voters(accounts[0]), "the voter was marked as voted")
+		const candidate = await this.election.candidates(candidateId)
+		assert.equal(candidate.voteCount, 1)
+	})
+
+	it('throws an for an invalid candidate' async() => {
+		// TODO: 
+	})
+
+	it('throws an exception for double voting' async() => {
+		
+	})
+
 })
