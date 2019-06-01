@@ -1,4 +1,4 @@
-# developer-bootcamp-ethereum
+# capstone-project
 
 ## Description
 This repo contains Capstone project implementation with Ethereum blockchain technology.
