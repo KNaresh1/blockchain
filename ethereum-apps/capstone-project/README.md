@@ -38,50 +38,50 @@ NodeJs 9.10.0, Python 2.7.16, Ganache, node-gyp@3.6.2, Truffle 5.0.5, Infura, Gi
   "author": "Naresh Kakumani",
   "private": true,
   "dependencies": {
-    ##### Build candle stick chart
+    #### Build candle stick chart
     "apexcharts": "3.6.3",
-    ##### Babel to provide ES6 features
+    #### Babel to provide ES6 features
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.7.0",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "babel-preset-stage-3": "6.24.1",
     "babel-register": "6.26.0",
-    ##### For themeing the project
+    #### For themeing the project
     "bootstrap": "4.3.1",
-    ##### Testing smart contract
+    #### Testing smart contract
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "chai-bignumber": "3.0.0",
-    ##### To read environment variables
+    #### To read environment variables
     "dotenv": "6.2.0",
-    ##### Javascrip lib for working with datastructures
+    #### Javascrip lib for working with datastructures
     "lodash": "4.17.11",
-    ##### To work with time in javascript
+    #### To work with time in javascript
     "moment": "2.24.0",
-    ##### Solidity smart contract in doing math
+    #### Solidity smart contract in doing math
     "openzeppelin-solidity": "2.1.3",
-    ##### Create react app, building ui
+    #### Create react app, building ui
     "react": "16.8.4",
     "react-apexcharts": "1.3.0",
     "react-bootstrap": "1.0.0-beta.5",
     "react-dom": "16.8.4",
     "react-redux": "5.1.1",
     "react-scripts": "2.1.3",
-    ##### State management
+    #### State management
     "redux": "3.7.2",
-    ##### To see what happens inside redux
+    #### To see what happens inside redux
     "redux-logger": "3.0.6",
-    ##### Redeaing information out of redux
+    #### Redeaing information out of redux
     "reselect": "4.0.0",
-    ##### Ensure solidity is compiling etc.
+    #### Ensure solidity is compiling etc.
     "solidity-coverage": "0.5.11",
-    #####To build smart contracts 
+    ####To build smart contracts 
     "truffle": "5.0.7",
     "truffle-flattener": "1.3.0",
     "truffle-hdwallet-provider": "1.0.4",
     "truffle-hdwallet-provider-privkey": "1.0.3",
-    ##### Client application talk to blockchain
+    #### Client application talk to blockchain
     "web3": "1.0.0-beta.46"
   },
   "scripts": {
