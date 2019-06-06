@@ -7,6 +7,7 @@ require('chai')
 // Below helper code should be moved to helpers.js
 // import { tokens, EVM_REVERT } from './helpers'
 const EVM_REVERT = 'VM Exception while processing transaction: revert'
+const INVALID_ADDRESS = 'invalid address (arg="_to", coderType="address", value=0)';
 
 const tokens = (n) => {
 	return new web3.utils.BN(
@@ -15,7 +16,7 @@ const tokens = (n) => {
 }
 
 // contract('Token', (accounts) {}  is written in ES6 syntax belos
-contract('Token', ([deployer, receiver]) => {
+contract('Token', ([deployer, receiver, exchange]) => {
 	let token
 
 	beforeEach(async () => {
@@ -71,7 +72,7 @@ contract('Token', ([deployer, receiver]) => {
 				balanceOf.toString().should.equal(tokens(100).toString())
 			})
 
-			it('emits a transfer event', async () => {
+			it('emits a Transfer event', async () => {
 				const log = result.logs[0]
 				log.event.should.equal('Transfer', 'emitted event is correct')
 
@@ -96,7 +97,89 @@ contract('Token', ([deployer, receiver]) => {
 
 			it('rejects invalid receipient', async () => {
 				await token.transfer(0x0, tokens(100), { from: deployer })
-				.should.be.rejectedWith('invalid address (arg="_to", coderType="address", value=0)')
+				.should.be.rejectedWith(INVALID_ADDRESS)
+			})
+		})
+	})
+
+	describe('approving tokens', () => {
+		let amount
+		let result
+
+		beforeEach(async () =>{
+			amount = tokens(100)
+			result = await token.approve(exchange, amount, { from: deployer })
+		})
+
+		describe('success', () => {
+			it('allocates an allowance for delegated token spending on exchange', async () => {
+				const allowance = await token.allowance(deployer, exchange)
+				allowance.toString().should.equal(amount.toString())
+			})
+
+			it('emits Approval event', async () => {
+				const log = result.logs[0]
+				log.event.should.equal('Approval', 'emitted event is correct')
+
+				const event = log.args
+				event.owner.toString().should.equal(deployer, 'owner is correct')
+				event.spender.toString().should.equal(exchange, 'spender is correct')
+				event.value.toString().should.equal(amount.toString(), 'approval amount is correct')
+			})
+		})
+
+		describe('failure', () => {
+			it('rejects invalid spenders', async () => {
+				await token.approve(0x0, amount, { from: deployer })
+				.should.be.rejectedWith('invalid address (arg="_spender", coderType="address", value=0)')
+			})
+		})
+	})
+
+	describe('delegated token transfers', () => {
+		let result
+		let amount
+
+		beforeEach(async () => {
+			amount = tokens(100)
+			await token.approve(exchange, amount, { from: deployer })
+		})
+
+		describe('success', () => {
+
+			beforeEach(async () => {
+				result = await token.transferFrom(deployer, receiver, amount, { from: exchange })
+			})
+
+			it('transfers token balances', async () => {
+				let balanceOf
+
+				balanceOf = await token.balanceOf(deployer)
+				balanceOf.toString().should.equal(tokens(999900).toString())
+				balanceOf = await token.balanceOf(receiver)
+				balanceOf.toString().should.equal(tokens(100).toString())
+			})
+
+			it('emits a Transfer event', async () => {
+				const log = result.logs[0]
+				log.event.should.equal('Transfer', 'emitted event is correct')
+
+				const event = log.args
+				event.from.toString().should.equal(deployer, 'sender is correct')
+				event.to.toString().should.equal(receiver, 'receiver is correct')
+				event.value.toString().should.equal(amount.toString(), 'transfer amount is correct')
+			})
+		})
+
+		describe('failure', async () => {
+			it('rejects insufficient amounts', async () => {
+				await token.transferFrom(deployer, receiver, tokens(100000000), { from: exchange })
+				.should.be.rejectedWith(EVM_REVERT)
+			})
+
+			it('rejects invalid recipients', async () => {
+				await token.transferFrom(deployer, 0x0, amount, { from: exchange })
+				.should.be.rejectedWith(INVALID_ADDRESS)
 			})
 		})
 	})
