@@ -30,6 +30,10 @@ NodeJs 9.10.0, Python 2.7.16, Ganache, node-gyp@3.6.2, Truffle 5.0.5, Infura, Gi
 7. Change truffle.config to tell the dir where contract will reside
 8. Move existing contracts dir to src as configured in above step
 
+### Commands:
+truffle test
+truffle test ./test/Exchange.test.js
+
 #### package.json:
 {
   "name": "capstone-project",
