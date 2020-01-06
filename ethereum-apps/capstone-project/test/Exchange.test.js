@@ -329,13 +329,34 @@ contract('Exchange', ([deployer, feeAccount, user1, user2]) => {
 					event.tokenGet.should.equal(token.address, 'tokenGet is correct')
 					event.amountGet.toString().should.equal(tokens(1).toString(), 'amountGet is correct')
 					event.tokenGive.should.equal(ETHER_ADDRESS, 'tokenGive is correct')
-					event.amountGive.toString().shoud.equal(ether(1).toString(), 'amountGive is correct')
+					event.amountGive.toString().should.equal(ether(1).toString(), 'amountGive is correct')
 					event.userFill.should.equal(user2, 'userFill is correct')
 					event.timestamp.toString().length.should.be.at.least(1, 'timeStamp is present')
-				}
+				})
 			})
 
 			describe('failure', async () => {
+
+				it('rejects invalid order ids', async () => {
+					const invalidOrderId = 99999
+					await exchange.fillOrder(invalidOrderId, { from: user2 }).should.be.rejectedWith(EVM_REVERT)
+
+				})
+
+				it('rejects already filled orders', async () => {
+					// Fill the order
+					await exchange.fillOrder(1, { from: user2 }).should.be.fulfilled
+					// Try to fill it again
+					await exchange.fillOrder(1, { from: user2 }).should.be.rejectedWith(EVM_REVERT)
+				})
+
+				it('rejects cancelled orders', async () => {
+					// Cancel the order
+					await exchange.cancelOrder(1, { from: user1 }).should.be.fulfilled
+
+					// Try to fill the cancelled order
+					await exchange.fillOrder(1, { from: user2 }).should.be.rejectedWith(EVM_REVERT)
+				})
 
 			}) 
 		})
