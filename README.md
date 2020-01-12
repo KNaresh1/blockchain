@@ -4,8 +4,9 @@
 This repo contains examples and actual projects related to Blockchain technology.
 
 ## Dependencies
-NodeJs, Web3Js, React JS, Ganache, Truffle, Infura (API to connect to a remote ethereum Node in the blockchain), 
+Ethereum blockchain, Solidity, Mocha, Chai, ERC20 standard, NodeJs, Web3Js, React JS, Ganache, Truffle, Infura (API to connect to a remote ethereum Node in the blockchain), 
 Geth (To Run an ethereum node on local machine), Git, Visual Studio C++ 2015
+
 
 ### Etherscan: Is a blockchain explorer that allows to read all kinds of data from ethereum blockchain 
 #### Copy an account from etherscan and try to read some details of that acccount
@@ -40,4 +41,3 @@ undefined
 
 ### Basics to talk to smart contract in blockchain using web3js
 ### ABI - Abstract binary interface json file that tells what a smart contract could do
-

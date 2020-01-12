@@ -104,7 +104,3 @@ truffle test ./test/Exchange.test.js
     "not op_mini all"
   ]
 }
-
-
-# References
-1. https://dappuniversity.teachable.com/
